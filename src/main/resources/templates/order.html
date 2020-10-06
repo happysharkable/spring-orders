@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8"/>
+
+    <title>Каталог товаров</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+<div class="container">
+    <h1>Ваш заказ</h1>
+
+    <br>
+    <ul class="list-group" th:each="oi : ${@cart.items}">
+        <li class="list-group-item" th:text="${oi.product.title} + ', ' + ${oi.quantity} + '.шт, ' + ${oi.price}"/>
+    </ul>
+    <hr>
+    <span th:text="'Итого: ' + ${@cart.price}"/>
+    <hr>
+    <h2>Контакты</h2>
+    <form th:action="@{'/orders/new'}" method="POST">
+        <div class="form-row">
+            <div class="col form-group">
+                <label>Имя</label>
+                <input th:name="name" type="text" class="form-control" placeholder="Иван Иванов">
+            </div>
+            <div class="col form-group">
+                <label>Адрес</label>
+                <input th:name="address" type="text" class="form-control" placeholder="Москва, Кремль">
+            </div>
+            <div class="col form-group">
+                <label>Телефон</label>
+                <input th:name="phone" type="text" class="form-control" placeholder="+70123456789">
+            </div>
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary btn-block" method="POST">Завершить оформление</button>
+        </div>
+    </form>
+</div>
+
+
+</body>
+</html>

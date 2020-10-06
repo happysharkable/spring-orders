@@ -84,4 +84,9 @@ public class Cart {
             price += o.getPrice();
         }
     }
+
+    public void clear() {
+        items.clear();
+        recalculate();
+    }
 }

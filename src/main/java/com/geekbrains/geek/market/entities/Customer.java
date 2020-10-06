@@ -20,6 +20,6 @@ public class Customer {
     @Column(name = "name")
     private String name;
 
-    @OneToMany(mappedBy = "customer")
-    private List<Order> orders;
+//    @OneToMany(mappedBy = "customer")
+//    private List<Order> orders;
 }

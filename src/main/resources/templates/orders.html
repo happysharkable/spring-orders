@@ -21,16 +21,24 @@
         <tr>
             <th>ID</th>
             <th>Клиент</th>
-            <th>Товар</th>
+            <th>Адрес</th>
+            <th>Телефон</th>
+            <th>Список товаров</th>
             <th>Цена</th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="o : ${orders}">
             <td th:text="${o.id}"/>
-            <td th:text="${o.customer.name}"/>
-            <td th:text="${o.product.title}"/>
-            <td th:text="${o.currentPrice}"/>
+            <td th:text="${o.customerName}"/>
+            <td th:text="${o.customerAddress}"/>
+            <td th:text="${o.customerPhone}"/>
+            <td>
+                <ul class="list-group" th:each="oi : ${o.items}">
+                    <li class="list-group-item" th:text="${oi.product.title} + ', ' + ${oi.quantity} + '.шт'"/>
+                </ul>
+            </td>
+            <td th:text="${o.price}"/>
         </tr>
         </tbody>
     </table>

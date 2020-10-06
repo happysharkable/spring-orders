@@ -19,4 +19,11 @@ public class OrderService {
         return orderRepository.findAll();
     }
 
+    public Optional<Order> findById(Long id) {
+        return orderRepository.findById(id);
+    }
+
+    public void save(Order o) {
+        orderRepository.save(o);
+    }
 }

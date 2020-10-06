@@ -18,9 +18,18 @@ public class Order {
     @Column(name = "id")
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "customer_id")
-    private Customer customer;
+//    @ManyToOne
+//    @JoinColumn(name = "customer_id")
+//    private Customer customer;
+
+    @Column(name = "customer_name")
+    private String customerName;
+
+    @Column(name = "customer_phone")
+    private String customerPhone;
+
+    @Column(name = "customer_address")
+    private String customerAddress;
 
     @OneToMany(mappedBy = "order")
     @Cascade(org.hibernate.annotations.CascadeType.ALL)
@@ -28,4 +37,15 @@ public class Order {
 
     @Column(name = "price")
     private int price;
+
+    public Order(String customerName, String customerPhone, String customerAddress, List<OrderItem> items) {
+        this.customerName = customerName;
+        this.customerPhone = customerPhone;
+        this.customerAddress = customerAddress;
+        this.items = items;
+        for (OrderItem oi : items) {
+            this.price += oi.getPrice();
+            oi.setOrder(this);
+        }
+    }
 }
